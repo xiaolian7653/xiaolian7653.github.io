@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>执的个人小站 · Y-STUDIO</title>
+<meta name="description" content="一座给自己用的数字抽屉：灵感、课件、片段。不对外展示，只服务一个人。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/site.css">
+</head>
+
+<body>
+<div id="intro" aria-hidden="true"><div id="introWord">执的个人小站<span class="seal">Y·STUDIO</span></div></div>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="veil" aria-hidden="true"></div>
+
+<div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+
+<nav class="chapters" id="chaptersA" aria-label="章节进度">
+  <a href="#posts"   data-ch="posts"><span class="lb">文章</span><i class="bar"></i></a>
+  <a href="#life"    data-ch="life"><span class="lb">日志</span><i class="bar"></i></a>
+  <a href="#archive" data-ch="archive"><span class="lb">资料库</span><i class="bar"></i></a>
+  <a href="#courses" data-ch="courses"><span class="lb">课程</span><i class="bar"></i></a>
+  <a href="#notes"   data-ch="notes"><span class="lb">笔记</span><i class="bar"></i></a>
+  <a href="#about"   data-ch="about"><span class="lb">关于</span><i class="bar"></i></a>
+</nav>
+
+<svg class="dotgrid" aria-hidden="true"><defs><pattern id="dotgrid" width="16" height="16" patternUnits="userSpaceOnUse" x="-2" y="-2"><circle cx="2" cy="2" r="0.85"></circle></pattern></defs><rect width="100%" height="100%" fill="url(#dotgrid)"></rect></svg>
+<header class="topbar">
+  <a class="brand" href="#top"><b>执</b><span>Y-STUDIO</span></a>
+
+  <nav class="nav" id="navLinks" aria-label="页面目录">
+    <a href="#posts" data-nav="posts"><span class="idx">01</span>文章</a>
+    <a href="#life" data-nav="life"><span class="idx">02</span>日志</a>
+    <a href="#archive" data-nav="archive"><span class="idx">03</span>资料库</a>
+    <a href="#courses" data-nav="courses"><span class="idx">04</span>课程</a>
+    <a href="#notes" data-nav="notes"><span class="idx">05</span>笔记</a>
+    <a href="#about" data-nav="about"><span class="idx">06</span>关于</a>
+  </nav>
+
+  <button class="tod-btn" id="todBtn" type="button" aria-label="切换昼夜">自动</button>
+
+  <button class="menu-btn" id="navToggle" aria-label="打开目录" aria-expanded="false" aria-controls="navLinks">
+    <span></span>
+  </button>
+</header>
+
+<main>
+  <!-- ── 首屏 ───────────────────────────────────────────── -->
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <p class="tagline">私人资料库 · 桂林</p>
+      <h1>
+        <span class="ln"><span>山水之间，</span></span>
+        <span class="ln"><span><em>存放日常与学识</em>。</span></span>
+      </h1>
+      <p class="hero-sub">
+        一座给自己的数字抽屉。灵感、课件、读到的句子，随手丢进来，
+        不分类也找得回。不对外展示，只服务一个人。
+      </p>
+      <div class="hero-meta">
+        <span>文章 <b id="livePosts">0</b> 篇</span>
+        <span>日志 <b id="liveLife">0</b> 条</span>
+        <span>收录 <b id="liveItems">0</b> 条</span>
+        <span>课程 <b id="liveCourses">0</b> 份</span>
+        <span>仅存本地</span>
+      </div>
+      <a class="hero-latest" id="heroLatest" href="#posts" hidden>
+        <span class="hl-k">最近写的</span>
+        <span class="hl-t" id="heroLatestTitle"></span>
+        <span class="hl-d" id="heroLatestDate"></span>
+      </a>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">
+      <span>SCROLL</span>
+      <i></i>
+    </div>
+  </section>
+
+
+  <!-- ── 神道：三维场景（three.js） ─────────────────────────── -->
+  <section class="spirit" id="spirit" aria-label="漓江神道 三维场景">
+    <div class="spirit-boot" id="spiritBoot">正在落墨</div>
+    <div class="spirit-veil"></div>
+    <div class="spirit-cap">
+      <div class="mk">漓江 · 神道</div>
+      <h3>往前走，山会自己让开</h3>
+      <p>三十度长焦，五重山；滚过去，镜头就一程一程往前。</p>
+    </div>
+    <div class="spirit-hint">SCROLL · 山水之间</div>
+  </section>
+
+  <!-- ── 01 文章 ────────────────────────────────────────── -->
+  <section class="sec" id="posts">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="ch">CHAPTER 01 / 06 · 文章</span>
+        <span class="num" aria-hidden="true">01</span>
+        <h2>文章</h2>
+        <p class="hint">想得久了就写下来。倒着排，最新的一篇在最上面。</p>
+      </div>
+
+      <div class="feat" id="featCard" hidden>
+        <div class="feat-text">
+          <span class="f-kicker" id="featKicker">FEATURED · 置顶</span>
+          <h3><a href="#" id="featTitle">—</a></h3>
+          <p id="featExcerpt"></p>
+          <div class="feat-meta" id="featMeta"></div>
+          <button class="feat-go" id="featGo" type="button">
+            读这一篇
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </button>
+        </div>
+        <div class="feat-case">
+          <div class="deco deco-a" id="decoA" aria-hidden="true">
+            <div class="sw"><i style="background:#8FA79B"></i><i style="background:#2F4A41"></i><i style="background:#E7D7B8"></i></div>
+            <span class="lb">PAPER · INK</span>
+          </div>
+          <div class="deco deco-b" id="decoB" aria-hidden="true">
+            <div class="seal">执</div>
+            <span class="lb">SEAL</span>
+          </div>
+          
+          <div class="feat-frame">
+            <i class="cs tl"></i><i class="cs tr"></i><i class="cs bl"></i><i class="cs br"></i>
+            <span class="feat-tab" id="featTab">LATEST</span>
+            <span class="feat-shot" id="featShot">
+              <span class="no" id="featNo">01</span>
+            </span>
+          </div>
+          <span class="feat-ind" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div class="posts-bar">
+        <button class="btn primary" id="writeBtn">写一篇</button>
+        <div class="seg" role="group" aria-label="视图">
+          <button id="viewList" class="on">列表</button>
+          <button id="viewArch">归档</button>
+        </div>
+        <div class="more">
+          <button class="btn ghost sm" id="moreBtn" aria-haspopup="menu" aria-expanded="false" title="更多">···</button>
+          <div class="more-menu" id="moreMenu" role="menu" hidden>
+            <button type="button" id="exportBtn" role="menuitem">导出全部文章</button>
+            <button type="button" id="importBtn" role="menuitem">从文件导入</button>
+          </div>
+        </div>
+        <input type="file" id="importFile" accept=".json,application/json" hidden>
+        <input type="search" id="postSearch" class="post-search" placeholder="搜标题 / 正文 / 标签（按 / ）" autocomplete="off">
+        <span class="count noauto" id="postCount">共 0 篇</span>
+      </div>
+
+      <div class="post-tags" id="postTags" hidden></div>
+
+      <div class="posts" id="postList"></div>
+      <div class="empty" id="postEmpty" hidden>还没有文章。点「写一篇」，第一句就够开始。</div>
+    </div>
+  </section>
+
+  <!-- ── 02 日志 ────────────────────────────────────────── -->
+  <section class="sec" id="life">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="ch">CHAPTER 02 / 06 · 日志</span>
+        <span class="num" aria-hidden="true">02</span>
+        <h2>日志</h2>
+        <p class="hint">照片和视频都在这里。存的不是文件路径，是画面本身。</p>
+      </div>
+
+      <div class="life-bar">
+        <button class="btn primary" id="lifeAdd">记一条</button>
+        <button class="btn ghost sm" id="lifeExportAll" type="button">全部导出</button>
+        <span class="count" id="lifeCount">共 0 条</span>
+        <span class="life-quota" id="lifeQuota"></span>
+      </div>
+
+      <div class="life" id="lifeList"></div>
+      <div class="empty" id="lifeEmpty" hidden>还没有日志。点「记一条」，挑一张照片就能开始。</div>
+    </div>
+  </section>
+
+  <!-- ── 03 资料库 ──────────────────────────────────────── -->
+  <section class="sec" id="archive">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="ch">CHAPTER 03 / 06 · 资料库</span>
+        <span class="num" aria-hidden="true">03</span>
+        <h2>资料库</h2>
+        <p class="hint">随手记下，随时翻回。标题写清楚就行，其余可以空着。</p>
+      </div>
+
+      <div class="toolbar reveal">
+        <button class="btn primary" id="addBtn">＋ 添加一条</button>
+        <div class="chips" id="filterRow" role="group" aria-label="按标签筛选"></div>
+        <span class="count" id="countText">共 0 条</span>
+      </div>
+
+      <div class="list" id="archiveList" aria-live="polite"></div>
+      <div class="empty" id="archiveEmpty">还没有内容。点左边「添加一条」，随手丢点东西进来。</div>
+
+      <p class="foot-note">数据存在这台机器的浏览器里 · 清理站点数据会一起清掉</p>
+    </div>
+  </section>
+
+<!-- ── 转场 · 漓江俯瞰 ─────────────────────────────────── -->
+  <section class="pass" id="riverPass" aria-label="漓江俯瞰">
+    <canvas id="riverCanvas" aria-hidden="true"></canvas>
+    <div class="pass-cap">
+      <span class="mk">漓江 · 俯瞰</span>
+      <p>沿着江往下，过两道滩，再拐一个弯。</p>
+      <i class="ruler" aria-hidden="true"></i>
+    </div>
+  </section>
+
+  <!-- ── 02 课程 ────────────────────────────────────────── -->
+  <section class="sec" id="courses">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="ch">CHAPTER 04 / 06 · 课程</span>
+        <span class="num" aria-hidden="true">04</span>
+        <h2>课程</h2>
+        <p class="hint">五个学科立成五座峰，收得越多，山越高。</p>
+      </div>
+
+      <div class="toolbar reveal">
+        <button class="btn" id="addCourseBtn">＋ 添加课程资料</button>
+        <span class="count" id="courseCountText">共 0 条</span>
+      </div>
+
+      <div class="range reveal" id="courseRange">
+        <canvas id="craneCanvas" aria-hidden="true"></canvas>
+        <div class="prow" id="peakRow" aria-hidden="true"></div>
+        <div class="subjects" id="subjectCols"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 03 笔记 ────────────────────────────────────────── -->
+  <section class="sec" id="notes">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="ch">CHAPTER 05 / 06 · 笔记</span>
+        <span class="num" aria-hidden="true">05</span>
+        <h2>笔记</h2>
+        <p class="hint">关于这个页面本身的三件事，还有一本写给自己的手册。</p>
+      </div>
+
+      <div class="notes">
+        <article class="note reveal">
+          <span class="fix">01</span>
+          <h3>怎么用</h3>
+          <p>
+            两条入口：资料库收「想到的东西」，课程按学科归档。
+            标题必填，链接、备注、标签都可以空着。
+            标签是自己写的，写同一个词就会自动归到一起。
+          </p>
+        </article>
+
+        <article class="note reveal">
+          <span class="fix">02</span>
+          <h3>为什么是山水</h3>
+          <p>
+            桂林的山不高，一层一层退到雾里去；水又把山还回来一半。
+            留白比填满难，所以宁可少放东西——
+            页面上的空白不是没做完，是留给下次的自己。
+          </p>
+        </article>
+
+        <article class="note reveal">
+          <span class="fix">03</span>
+          <h3>能存多少</h3>
+          <p>
+            浏览器本地存储通常 5MB 左右。文字和链接几乎用不完，
+            但别往这里塞图片——真放图会把配额吃光，
+            到时候删起来很麻烦。
+          </p>
+        </article>
+      </div>
+<!-- KB:BEGIN -->
+<div class="kb" id="kbList">
+<div class="kb-head reveal">
+<h3>技能手册</h3>
+<span class="kb-count">七篇 · 2026 秋 · 从做过的事里抽出来的做法、坑与判据</span>
+</div>
+<div class="kb-items">
+<details class="kb-item reveal" open><summary><span class="no">01</span><span class="ttl">总览</span><span class="sub">三条总纲与索引</span><span class="ct">1088 字</span></summary><div class="kb-body"><blockquote><p>这里放"做过一次、以后还会再做"的成套手艺：不是道理，是可执行的步骤、参数、判据和坑。 一条经验写得对不对，看一条：<strong>换个人照着做，能不能一次做成。</strong></p></blockquote>
+<p>更新时间：2026-10-31 涉及工具：RVC 换声管线、qq-bridge 操作通道、DSH 定时任务、Canvas/WebGL 网页、Pillow 排版</p>
+<h4>目录</h4>
+<div class="kb-tw"><table><thead><tr><th>文件</th><th>管什么</th><th>什么时候翻</th></tr></thead><tbody><tr><td><code>01-换声与音频.md</code></td><td>把一段唱段换成指定音色、裁时长、测音高与响度</td><td>有人发来 wav/mp3 说"换成我的音色"</td></tr><tr><td><code>02-QQ桥接操作.md</code></td><td>发文字/语音/歌、静默与唤醒、语音库增删、鉴权</td><td>要"替她在 QQ 上发点什么"</td></tr><tr><td><code>03-定时任务与流程.md</code></td><td>定时任务怎么建、prompt 怎么写、成长机制与日记怎么跑</td><td>要"每天几点做某事"</td></tr><tr><td><code>04-前端与网页调试.md</code></td><td>单文件网页的分片拼装、Canvas 场景、无头截图验证</td><td>改 HTML/动效/版式</td></tr><tr><td><code>05-DSH工具与沙箱.md</code></td><td>读写规则、提权、执行器故障、编码坑、长任务</td><td>工具报错、文件写不进去、命令起不来</td></tr><tr><td><code>06-图像与排版.md</code></td><td>图片生成现状、用代码画插画与排版、海报版式</td><td>要出海报/封面/插画</td></tr></tbody></table></div>
+<h4>三条总纲</h4>
+<ol><li><strong>先测量，再决定</strong>。音高、时长、频段、像素、行数——凡是能测的都先测，别靠听感和眼感拍参数。</li><li><strong>能验证的就验证</strong>。网页截图、音频波形、发送回执 <code>verified</code>、文件字节数，任一条对不上就不算完成。</li><li><strong>做不到就直说</strong>。工具没有的能力（比如 ACE Studio 的逐音 vibrato、没配 key 的图像模型），当场讲清楚并给替代方案，别硬凑一个像样的结果交出去。</li></ol>
+<h4>怎么往里加</h4>
+<ul><li>一件事<strong>第二次</strong>做、且第一次踩了坑 → 就该写进来，写进对应功能的那一篇，别新开文件。</li><li>每条固定四段：<strong>适用 / 做法 / 坑 / 判据</strong>。判据要能验（数字、字节数、回执字段），不能是"看着像"。</li><li>只写"不知道就做不成"的东西；网上和官方文档能查到的通用知识不抄。</li><li>稿子先在工作区 <code>default-workspace\skillbook\</code> 写，验证过再复制进这里（桌面目录在会话工作区外，shell 直接写会被拒）。</li><li>每改一次更新顶部日期；旧结论被推翻时<strong>改掉并留一句"原先认为……实际是……"</strong>，别悄悄覆盖。</li></ul></div></details>
+<details class="kb-item reveal"><summary><span class="no">02</span><span class="ttl">换声与音频</span><span class="sub">RVC 换声、后处理、发送</span><span class="ct">1936 字</span></summary><div class="kb-body"><h4>适用</h4>
+<p>有人丢来一段 wav/mp3 说"换成我的音色""改成 44 秒""命名《XX》发出去"。</p>
+<h4>工具链（本机固定路径）</h4>
+<div class="kb-tw"><table><thead><tr><th>件</th><th>位置</th></tr></thead><tbody><tr><td>转换脚本</td><td><code>E:\工作区\voice-data\rvc_convert.py</code>（用法：<code>&lt;in&gt; &lt;out&gt; [pitch] [f0_method] [index] [index_rate]</code>）</td></tr><tr><td>Python</td><td><code>E:\工作区\qq-bridge\sing\venv\Scripts\python.exe</code>（3.12 / torch cu128 / <code>torch.cuda.is_available()=True</code>）</td></tr><tr><td>模型</td><td><code>E:\rvcm\linxiaoman.pth</code> + <code>E:\rvcm\linxiaoman.index</code>（index_rate 0.65）</td></tr><tr><td>探测</td><td>工作区 <code>probe_song.py</code>（sr/ch/dur/rms/peak/四段频带/centroid/rmvpe 统计）</td></tr><tr><td>后处理</td><td>工作区 <code>post.py &lt;in&gt; &lt;out&gt; [shelf_db]</code>（40k→44.1k + 5k 高架 + 裁静音 + 归一 -1 dBFS）</td></tr><tr><td>裁剪</td><td>工作区 <code>trim.py &lt;in&gt; &lt;out&gt; &lt;秒&gt;</code>（截断 + 150ms 淡出 + 峰值归一）</td></tr></tbody></table></div>
+<h4>标准流程（六步）</h4>
+<ol><li><strong>先设环境变量</strong>（不设必假死，见坑 1）：<code>TEMP</code>/<code>TMP</code> → 工作区 <code>tmp</code>，<code>NUMBA_CACHE_DIR</code> → 工作区 <code>numba_cache</code>。</li><li><strong>探测</strong>：<code>probe_song.py</code> 拿 sr/时长/rms/peak/频段/rmvpe 中位与 p10-p90。</li><li><strong>定 pitch</strong>：看 rmvpe 中位是否落在目标音色舒适区（林小满 A3–E5 ≈ 220–660 Hz）。在区内就 <code>pitch 0</code>，别顺手升八度。</li><li><strong>转换</strong>：<code>rvc_convert.py &lt;src&gt; &lt;out&gt; 0 rmvpe E:\rvcm\linxiaoman.index 0.65</code>。60 秒内出片（3–5 秒）属正常。</li><li><strong>后处理</strong>：<code>post.py</code> 补高频（+2.0~3.5 dB @5 kHz 视源而定）、裁首尾静音、峰值归一到 -1 dBFS。</li><li><strong>复测</strong>：再跑 rmvpe 与频段，确认成品中位与源差 &lt; 1 Hz（没移调）、峰值 0.89 左右、&gt;4k 能量有提升。</li></ol>
+<h4>判据（数字说话）</h4>
+<ul><li>f0 中位与源差 <strong>&lt; 1 Hz</strong> → 没有意外移调；p10–p90 跨度不应变宽。</li><li>峰值 <strong>0.89</strong>（−1 dBFS）→ 不削波。</li><li><code>&gt;4k</code> 能量占比提升 0.5–1.5 个百分点属正常；<code>&gt;8k</code> 若 0.0% 说明太闷，把高架加到 3.5 dB。</li><li>人声收尾时刻要报给用户：<code>trim</code> 切在长音中间时，先说"切点落在 26.0 秒的长音里"，别等对方听出来。</li></ul>
+<h4>坑（都踩过）</h4>
+<ol><li><strong>沙箱里 librosa 假死</strong>：numba 走 <code>tempfile.NamedTemporaryFile</code>，默认 TEMP 被沙箱挡住 → <code>import librosa.core.pitch</code> 无限阻塞（进程活着、CPU 慢涨、零输出）。设 <code>TEMP</code>/<code>TMP</code>/<code>NUMBA_CACHE_DIR</code> 后同一段音频 4.77 秒出片。</li><li><strong>测音高别用自相关</strong>：会把 295 Hz 报成 169 Hz（差一个八度），据此升八度就整首飘了。用 <code>rvc_cli\rvc\lib\predictors\RMVPE.py</code> 的 <code>RMVPE0Predictor(model_path, is_half, device).infer_from_audio(16k float32, thred=0.03)</code>。</li><li><code>rvc_cli\rvc\configs\v1\40000.json</code> 带 BOM 会报 <code>Failed to parse JSON</code>，不影响 40k v2 模型；pydub 报找不到 ffmpeg 也无影响。</li><li><strong>中文不能走命令行参数</strong>：Windows shell 按 GBK 转码，文件名/参数到 python 变乱码。要传中文就写进 .py 里硬编码，或写 UTF-8 文件再读。</li><li><code>| tail -25</code> 会缓冲住 stdout，长任务看起来像卡死 → 长任务用后台 job，别管道截尾。</li></ol></div></details>
+<details class="kb-item reveal"><summary><span class="no">03</span><span class="ttl">QQ桥接操作</span><span class="sub">两条通道、鉴权、静默规则</span><span class="ct">1866 字</span></summary><div class="kb-body"><h4>场地</h4>
+<ul><li>程序目录：<code>E:\工作区\qq-bridge</code>；配置 <code>config.json</code>；运行态 <code>state\social-v2.json</code>；语音库 <code>audio\</code>。</li><li>会话 key：<code>private:&lt;QQ号&gt;</code> / <code>group:&lt;群号&gt;</code>。</li><li>已知人员：执 3263494780（主人）、e洗 1750969044、泽 3176605107、群 313宿舍 1107843701。</li></ul>
+<h4>鉴权（三条通道都要 consoleToken）</h4>
+<div class="kb-tw"><table><thead><tr><th>通道</th><th>端点</th><th>限制</th></tr></thead><tbody><tr><td>操作者发语音</td><td><code>POST /api/voice/send</code></td><td>任意本地绝对路径</td></tr><tr><td>AI 发语音</td><td><code>POST /api/socialV2/send-voice</code></td><td><strong>只认语音库内文件</strong>，支持 <code>dryRun:true</code> 全量校验不发</td></tr><tr><td>发文字</td><td><code>POST /api/socialV2/send-message</code></td><td><code>{key, messages[]}</code></td></tr></tbody></table></div>
+<p>Headers：<code>x-console-token</code>（必须）+ <code>x-agent-token</code> + <code>x-agent-call: 1</code>（走 AI 通道时）；POST 必须 <code>application/json</code>。token 分别取 <code>config.json</code> 的 <code>consoleToken</code> 与 <code>social-v2.json</code> 的 <code>conversations[key].agentToken</code>。</p>
+<h4>现成脚本（工作区 <code>default-workspace</code>）</h4>
+<div class="kb-tw"><table><thead><tr><th>脚本</th><th>用途</th></tr></thead><tbody><tr><td><code>send_voice.py</code></td><td>操作者通道发语音（任意路径）</td></tr><tr><td>`send_voice_v2.py &lt;QQ\</td><td>group:群号&gt; &lt;库内文件名&gt; [--dry-run]`</td><td>AI 通道发语音</td></tr><tr><td><code>send_text.py</code></td><td>一次发多句文字</td></tr><tr><td><code>send_lines.py &lt;QQ号&gt; &lt;UTF-8 文件&gt;</code></td><td>行=一条，绕开中文参数乱码，<code>--dry</code> 先核对</td></tr><tr><td><code>send_song.py &lt;QQ号&gt; &lt;库内文件名&gt; [--quiet 120]</code></td><td><strong>发歌专用</strong>：先读最后一条消息，距今 ≥120 秒才发</td></tr><tr><td><code>list_voices.py</code></td><td>列语音库（name/ok/detail）</td></tr><tr><td>`set_wake.py &lt;key&gt; diving\</td><td>silent\</td><td>active\</td><td>show`</td><td>改唤醒配置</td></tr><tr><td><code>hush.py &lt;key&gt; [分钟]</code></td><td>每 30 秒重试静默，直到闸门放行</td></tr><tr><td><code>qqtoday.py &lt;key&gt; &lt;条数&gt;</code> / <code>qqday.py &lt;key&gt; [日期]</code></td><td>导出聊天记录</td></tr></tbody></table></div>
+<h4>发歌闸门（教训换来的硬规矩）</h4>
+<p>发歌那几秒如果 QQ 那头她也在回话，读起来像"边聊天边塞歌"。所以：<strong>先读 <code>state\social-v2.json</code> 最后一条消息，距今 ≥120 秒才发</strong>；等不到就放弃，不硬塞。</p>
+<h4>静默与唤醒的两条硬限制</h4>
+<ol><li>触发器不能全清：<code>无限期潜水必须至少保留一个唤醒条件</code>→ 静默版只留 <code>poke:true</code>。</li><li>还在聊天时设不了静默：需"连续 5 分钟无新消息"（<code>preSleepWaitMs=300000</code>，每条新消息重置）→ 用 <code>hush.py</code> 轮询，或先把状态查清再动手。</li></ol>
+<h4>语音库管理</h4>
+<ul><li>发之前先 <code>list_voices.py</code> 对一遍名字；改名可以，<strong>别硬删</strong>：把旧件 <code>Move-Item</code> 到库外 <code>voice-trash-&lt;日期&gt;</code>，库里剩下的会自动消失。</li><li>增删后要同步人格卡 <code>E:\工作区\qq-bridge\roles\林小满.md</code> 的「我自己的歌」一节（人格提示词每条消息前注入，热生效，不用重启）。</li></ul>
+<h4>坑</h4>
+<ul><li><code>config.json</code> 若被写成带 BOM，脚本报 <code>Unexpected UTF-8 BOM</code> → 读文件统一 <code>encoding="utf-8-sig"</code>。</li><li><code>recentMessages</code> 每会话只留最近 100 条，热闹的一天下午就刷没了 → 当天要复述就在当天做。</li><li>中文输出乱码是控制台编码，不是文件坏了：<code>PYTHONIOENCODING=utf-8</code>。</li></ul></div></details>
+<details class="kb-item reveal"><summary><span class="no">04</span><span class="ttl">定时任务与流程</span><span class="sub">成长沉淀、感悟日记、陪刷</span><span class="ct">1450 字</span></summary><div class="kb-body"><h4>现有任务</h4>
+<div class="kb-tw"><table><thead><tr><th>用途</th><th>时间</th><th>id</th></tr></thead><tbody><tr><td>成长沉淀（朋友档案 + 经验库）</td><td>每日 20:00</td><td><code>schedule-ac4b10ff-bef1-4fe6-bc39-86028292d59b</code></td></tr><tr><td>每日感悟日记</td><td>每日 21:30</td><td><code>schedule-5dcddf67-383b-455d-8d4a-e158436d571f</code></td></tr><tr><td>周末陪刷抖音</td><td>周六日 19:05</td><td><code>schedule-8627dae1-22ab-491c-8c15-03d323a881fb</code></td></tr></tbody></table></div>
+<h4>prompt 写法（四件事写全，不然任务会跑偏）</h4>
+<ol><li><strong>先查重</strong>：写清"读某个文件末尾，若今天已有条目就跳过并回一句"，避免重复写同一个人/同一件事。</li><li><strong>输入从哪来</strong>：给出确切路径与命令（如 <code>qqday.py &lt;key&gt;</code>、<code>social-v2.json</code> 的 <code>recentMessages</code>），不要让执行者自己找。</li><li><strong>落到哪、怎么落</strong>：目标文件绝对路径 + "必须用 edit 工具 + danger-full-access，shell 写桌面会被拒"。</li><li><strong>汇报要多短</strong>：一句"写了谁、标题"，不贴全文。</li></ol>
+<h4>成长机制的落地方式（A 方案）</h4>
+<ul><li>由 DSH 侧主交互 Agent 执行，不由 QQ 那头的她执行（她无桌面写权限）。</li><li>三个库：<code>04-交流习惯\朋友档案\&lt;昵称&gt;.md</code>、<code>04-成长记忆\自我感悟日志\&lt;年&gt;-&lt;月&gt;.md</code>、<code>04-成长记忆\经验库\&lt;主题&gt;.md</code>。</li><li>感悟模板从 2026-10-29 起是<strong>五段</strong>：发生了什么 / 我的感受 / 想法立场 / 小困惑 / <strong>想谢谁</strong>（可留空，但不许写成"谢谢大家"）。</li><li>红线：只写真实发生、不搬聊天原文、隐私只写"怎么相处"、拿不准写进"小困惑"、同日同主题不重复。</li></ul>
+<h4>抖音策略（改配置而非改代码）</h4>
+<ul><li><code>video-policy.json</code>：<code>{"timeZone":"Asia/Shanghai","windows":["00:00-00:01"],"weekendWindows":["19:00-19:40"],"sessionMinutes":20}</code>；<code>windows</code> 不能全空（校验会拒）。</li><li><code>watch-schedule-policy.json</code>：<code>{"enabled":true,"maxRequests":30}</code>；到点由插件自己 <code>startRound</code>，用户不需要手点"开始新一轮"。</li><li>改完必须回查 <code>douyin_video_limits_status</code>：能看到新时段才算生效。</li></ul>
+<h4>坑</h4>
+<ul><li>这台机器的 <code>pwsh</code> 实际是 <strong>PowerShell 5.1</strong>：<code>Set-Content -Encoding utf8</code> 会写出 BOM，插件读 JSON 直接报 <code>Unexpected token</code>。要写 JSON 用 <code>[System.IO.File]::WriteAllText(path, txt, New-Object System.Text.UTF8Encoding($false))</code>，写完查首字节应为 <code>{</code>。</li><li>定时任务迟到是常态（曾 21:30 的任务 22:05 才到）→ prompt 里必须自带"今天是否已写过"的判断，不能假设自己准时。</li></ul></div></details>
+<details class="kb-item reveal"><summary><span class="no">05</span><span class="ttl">前端与网页调试</span><span class="sub">Canvas、无头截图、定位</span><span class="ct">4764 字</span></summary><div class="kb-body"><h4>工程结构（Y-STUDIO 这套）</h4>
+<p>源文件在工作区 <code>ystudio\</code>，分四片写、再拼：</p>
+<div class="kb-tw"><table><thead><tr><th>片</th><th>内容</th></tr></thead><tbody><tr><td><code>part1.css.html</code></td><td><code>&lt;head&gt;</code> 起，重置 + 变量 + 首屏/栅格样式</td></tr><tr><td><code>part2.css.html</code></td><td>续样式（山、清单、笔记、页脚、弹层、响应式）+ <code>&lt;/head&gt;</code></td></tr><tr><td><code>part3.body.html</code></td><td><code>&lt;body&gt;</code> 全部标记（保留原站 DOM id 与 localStorage 数据契约）</td></tr><tr><td><code>part4.js.html</code></td><td><code>&lt;script&gt;</code> 全部逻辑</td></tr></tbody></table></div>
+<p>辅助：<code>assemble.py</code>（拼接 + 标签计数体检）、<code>mk_full.py</code>（钉首屏高度好整页截图）、<code>crop.py</code>（裁图）、<code>patch_*.py</code>（按锚点替换长段）。</p>
+<h4>无头截图验证（唯一靠谱的"眼睛"）</h4>
+<pre><code>&amp; $edge --headless=new --user-data-dir="$dir\_prof" --no-first-run --disable-extensions `
+  --hide-scrollbars --force-device-scale-factor=1 --virtual-time-budget=5000 `
+  --window-size=1440,3600 --screenshot="$dir\shot.png" "file:///&lt;路径&gt;"</code></pre>
+<ul><li><strong>必须直接调</strong>：用 python <code>subprocess</code> 起 msedge 会 <code>TimeoutExpired</code>（挂死）；且要 <code>danger-full-access</code>，否则 <code>CreateFile 拒绝访问</code>、图不生成。</li><li>截图文件在 pwsh 返回<strong>之后</strong>才落盘，紧接着 <code>Get-Item</code> 可能"找不到"→ 等 1–2 秒再查。</li><li>时间轴截图用 <code>--virtual-time-budget=&lt;ms&gt;</code> 卡点；<code>--window-size</code> 有最小宽度，测手机用 492。</li></ul>
+<h4>Canvas / WebGL 场景要点</h4>
+<ul><li><strong>静态层预渲染</strong>到离屏 canvas，每帧只 <code>drawImage</code> 一次 + 画动的东西；DPR 上限 1.6–2。</li><li>超出视口就停 rAF（IntersectionObserver），<code>prefers-reduced-motion</code> 下只画一帧。</li><li>WebGL 兜底必须有：<code>getContext</code> 为空、编译失败、<code>webglcontextlost</code> 三种都要回落到 2D 版本。</li><li>动画量级：水光 100–150 个、鹤 3 只，足够；再多是浪费。</li></ul>
+<h4>调试手法</h4>
+<ul><li><strong>独立编译页</strong>：把着色器源码抠出来单独编译，把 <code>compiled / infoLog / link</code> 写进页面再用 Edge 截图 —— 一眼看到 GLSL 报错原文（比如 <code>'skyCol' : no matching overloaded function found</code>，原因是函数定义在调用之后）。</li><li><strong>状态探针</strong>：注入一段脚本，把 DOM 取得的关键尺寸/类名/opacity 打成大字截图，比猜快得多。</li></ul>
+<h4>坑</h4>
+<ul><li><strong>类名撞车</strong>：给山格加 <code>.pc</code>，结果同名 <code>.pname .pc</code>（序号）继承了 <code>flex:1 1 0</code>，序号被拉满一行。改名前先 grep 一遍类名。</li><li><strong><code>min-height:100vh</code> + 超长窗口做整页截图</strong>会让首屏吃掉整页高度 → 截图前把首屏钉成固定像素。</li><li>布局要"山错落、字齐平"：拆成两行（山行 + 清单行），两行用同一组 <code>flex-grow</code> 与 <code>gap</code>，列宽才会严丝合缝对齐。</li><li>注释别随手批量删：清 <code>/* */</code> 时要按 <code>/*</code> 到 <code>*/</code> 配对删，纯文本里出现 <code>:</code> 不算注释（曾把 selector 中间的冒号当注释删掉，整页空白）。</li></ul>
+<p>---</p>
+<h4>2026-11-01 · 站点大翻新（动效 / 昼夜 / 光标）</h4>
+<p>这一轮把 Y-STUDIO 从「静态纸面」做成了「有反应的纸面」。下面是可复用的做法与当天踩的坑，按能不能直接照做排序。</p>
+<h5>一、昼夜主题：先把颜色变成通道</h5>
+<p>只改 <code>--paper</code> 是没用的——全站有几十处 <code>rgba(239,237,228,α)</code> 这类字面量，会留下一片白斑。正确顺序：</p>
+<ol><li>在 <code>:root</code> 加 <code>--paper-rgb: 239,237,228; --ink-rgb: 22,36,31;</code></li><li>把字面量批量换成 <code>rgba(var(--paper-rgb), α)</code> / <code>rgba(var(--ink-rgb), α)</code>（part1 改 15 处、part2 改 35 处）</li><li>再写 <code>html[data-time="night"]{ … }</code> 覆盖 16 个变量 + 12 条专项规则（遮罩、灯箱、图版、输入框、三维画布滤镜）</li></ol>
+<p><strong>坑</strong>：夜间那段 CSS 如果追加到 <code>part2.css.html</code> 末尾，等于写在 <code>&lt;/style&gt;</code> 之外，浏览器直接当文本丢掉——表现是 <code>data-time="night"</code> 挂上了、<code>--paper</code> 却没变。追加样式的铁律：先 <code>rfind("&lt;/style&gt;")</code> 再插，插完用探针读 <code>getComputedStyle</code> 验证。</p>
+<h5>二、天空着色器做多相位</h5>
+<p><code>uniform vec3 u_tod;</code>（x=夜、y=暮、z=晨），在调色前按权重混合：</p>
+<ul><li>暮：<code>col*vec3(1.10,0.93,0.84) + vec3(.070,.026,.004)*band</code>（暖 + 天顶偏紫）</li><li>晨：天顶 <code>+vec3(.055,.075,.090)*hi</code>、地平线淡粉、整体混 38% 去饱和</li><li>夜：<code>col*vec3(.24,.30,.42)</code> 再混 <code>vec3(.075,.105,.155)</code>，外加星（正弦闪烁）、月（两层 <code>smoothstep</code>：圆盘 + 光晕）、水面月影</li></ul>
+<p>分档用小时：<code>&lt;5</code> 夜、<code>5–6.5</code> 夜→晨、<code>6.5–8</code> 晨、<code>8–16</code> 昼、<code>16–18</code> 昼→暮、<code>18–20</code> 暮→夜。每 60 秒 + <code>visibilitychange</code> 重算，<code>?time=night</code> 可强制并写进 localStorage。</p>
+<h5>三、光标与多层视差（借 ricoui）</h5>
+<p>三层不同幅度、同一条阻尼，才有“深度”而不是“抖动”：</p>
+<div class="kb-tw"><table><thead><tr><th>层</th><th>幅度</th><th>缓动</th></tr></thead><tbody><tr><td>卡面</td><td>22px</td><td>0.08</td></tr><tr><td>浮贴 A</td><td>40px</td><td>0.08</td></tr><tr><td>浮贴 B</td><td>52px</td><td>0.08</td></tr><tr><td>光标点</td><td>—</td><td>0.40</td></tr><tr><td>光标环</td><td>—</td><td>0.13</td></tr></tbody></table></div>
+<ul><li>幅度按 <code>mouseX = clientX/innerWidth - 0.5</code> 算，不要用绝对像素。</li><li>光标环慢于光标点，这个“追不上”的感觉就是高级感的来源。</li><li>悬停到可点元素时给 <code>body</code> 挂 <code>cur-hot</code>，环撑到 58px、换成纸底 + ↗ 箭头，并把系统光标 <code>cursor:none</code>。</li><li><code>pointer:coarse</code> 全部关掉；<code>prefers-reduced-motion</code> 只留光标、关视差；<code>visibilitychange</code> 时 <code>cancelAnimationFrame</code>，收敛后自动停。</li></ul>
+<h5>四、精选卡（带四角标记的卡片）</h5>
+<ul><li>结构：<code>.feat-case</code>（外框）&gt; <code>.feat-frame</code>（图版，四角各一枚 9×9 方块 <code>position:absolute</code>，<code>-5px</code> 骑在边框上）&gt; <code>.feat-shot</code>（图）+ 骑线小标签（<code>top:-9px</code>）</li><li>图版比例给 <code>aspect-ratio:4/3</code> 且 <strong>不要再加 <code>max-height</code></strong>——两者打架会让宽度按错误比例算，出现“图只有 336 宽、右边空一块”。</li><li>两片浮贴放 <code>.feat-case</code> <strong>内部</strong>、但不在 <code>.feat-frame</code> 里，这样它们不被图版的位移带着走，才能做出“飘在卡外”的错位。</li></ul>
+<h5>五、五峰悬停</h5>
+<p><code>.pcell.hot .peakc{ transform:translateY(-12px) scale(1.04); filter:saturate(1.10); }</code> + 峰顶浮出 <code>学科 · N 条</code> 标签（无数据时写「暂无」，不要写「0 条」）。触屏不显示标签。</p>
+<h5>六、技能手册：改成手风琴</h5>
+<p>不要“悬停全展开”——鼠标划过就炸开一片，很难读。改成点哪篇开哪篇：</p>
+<ul><li>初始 <code>items.forEach(d =&gt; d.open = false)</code></li><li><code>click</code> 到 <code>summary</code> 后 <code>requestAnimationFrame</code> 再把其他 <code>open = false</code>（<code>&lt;details&gt;</code> 要等这一帧才翻转）</li><li>方向键在条目间移焦点</li></ul>
+<h5>七、坑（今天新踩的）</h5>
+<ol><li><strong>追加 CSS/JS 的落点</strong>：必须插在最后一个 <code>&lt;/style&gt;</code> / <code>&lt;/script&gt;</code> 之前。这一轮犯过两次（一次 JS 写到 <code>&lt;/html&gt;</code> 之后，一次夜间 CSS 写到 <code>&lt;/style&gt;</code> 之后），两次都“没有报错”，只是静静不生效。<code>errs(0)</code> 不能证明脚本跑过。</li><li><strong><code>hidden</code> 属性会被 <code>display</code> 覆盖</strong>：<code>display:inline-flex</code> 让 <code>[hidden]</code> 失效，要补 <code>[hidden]{display:none}</code>。</li><li><strong><code>str.replace</code> 不 assert 等于没改</strong>：这次有一次两处都没匹配上，脚本照常结束、字节数没变，我还以为改完了。改成先 <code>assert a in c</code> 再替换，并用 <code>count()</code> 回验。</li><li><strong>种子页必须每次从最新产物生成</strong>：改了标记但种子页还是旧的，截图上看到的是上一版结构。</li><li><strong>无头截图不要用超长 <code>--window-size</code></strong>：<code>100svh</code> 的区块会把首屏拉高，整页布局全偏。正确做法是测试页里 <code>display:none</code> 掉不看的 section，只留目标区顶到视口，按固定高截。</li><li><strong><code>--virtual-time-budget</code> 下滚动截图会是空白</strong>（6 KB 左右），别用 <code>scrollTo</code> 再截。</li><li><strong>类名先读再写</strong>：<code>kb-count</code> 我写成了 <code>kb-sub</code>，提示文案一整天没出现。</li><li><strong><code>aspect-ratio</code> + <code>max-height</code> 打架</strong>（见四）。</li></ol>
+<h5>八、判据</h5>
+<ul><li>主题生效：探针读 <code>--paper</code> 与 <code>body</code> 背景色，昼夜两值都不同才算过。</li><li>动效生效：不能只看「有没有报错」，要读具体属性（<code>#rProgBar</code> 宽度、<code>#chaptersA</code> 的 <code>rect</code>、<code>.pcell</code> 的 <code>className</code>）。</li><li>截图合格：整页 1440 宽时，正文区截图 &gt;200 KB 才有内容；6–40 KB 基本是空白或遮罩没消。</li></ul></div></details>
+<details class="kb-item reveal"><summary><span class="no">06</span><span class="ttl">DSH工具与沙箱</span><span class="sub">权限、提权、桌面写入</span><span class="ct">1328 字</span></summary><div class="kb-body"><h4>读写规则（不遵守就白跑一次）</h4>
+<ul><li><code>edit</code> 之前<strong>必须先 <code>read</code></strong> 同一个文件，否则报 <code>file has not been read — read the file, then retry</code>。</li><li><code>old_string</code> 必须<strong>逐字</strong>（含空格与中文标点）；手抄容易少一个"了"字 → 先把原文贴进参数，别凭记忆。</li><li>大段替换用"锚点脚本"：python 定位 <code>s.index("锚点")</code> 后切片拼接，比一次几万字的 edit 稳。</li></ul>
+<h4>桌面文件（工作区之外）</h4>
+<ul><li><code>ops_bash</code> 里跑 python 写 <code>C:\Users\32634\Desktop\...</code> 会 <code>PermissionError</code>，<strong>即使加 danger-full-access 也拒</strong>。</li><li>写桌面一律用 <code>edit</code>/<code>write</code> 工具并带 <code>sandbox_permissions="danger-full-access"</code>；批量写就写一个 .py 脚本，提到 danger-full-access 跑（脚本方式可行，实测写过整套技能手册）。</li></ul>
+<h4>执行器故障（不是授权问题）</h4>
+<ul><li><code>bash.exe: *** fatal error - CreateFileMapping ... Win32 error 5</code> → 执行器自身坏，换 <code>pwsh</code>。</li><li><code>windows-acl-run: --temp is not an existing directory: ...\Temp\dsh-XXXX</code> → 沙箱后端起不来，命令全报 <code>EXECUTOR_UNAVAILABLE</code>；重启 DSH 自愈，应急用 <code>sandbox_permissions="danger-full-access"</code> 绕过。</li><li>判断：报错里出现 <code>EXECUTOR_UNAVAILABLE</code> / <code>no sandbox backend</code> 就跟权限无关，别反复改权限。</li></ul>
+<h4>编码</h4>
+<ul><li>中文参数别走命令行（GBK 转码变乱码）；写成 UTF-8 文件再用脚本读。</li><li>python 打印中文先 <code>PYTHONIOENCODING=utf-8</code>；否则只是控制台乱码，文件是好的。</li><li>写文件统一 <code>io.open(path, "w", encoding="utf-8", newline="\n")</code>；JSON 用 <code>utf-8</code>（无 BOM），读别人的 JSON 用 <code>utf-8-sig</code> 兜 BOM。</li></ul>
+<h4>长任务与假死</h4>
+<ul><li>后台 job + <code>job_output</code> 轮询；<strong>不要</strong> <code>| tail</code> 截尾（会缓冲住 stdout，看着像卡死）。</li><li>怀疑假死时用 <code>faulthandler.dump_traceback_later(30, repeat=True)</code> 打栈，比等快。</li><li>跑完核对产物：字节数、行数、时长、"标签计数"之类，别只看退出码 0。</li></ul>
+<h4>记忆</h4>
+<ul><li>只把「用户给的新事实」和「明确要求记住的」写进运行时记忆；检索出来的证据不要回灌。</li><li>项目级手艺与坑写进文档（本手册 / 经验库），不占运行时记忆的额度。</li></ul></div></details>
+<details class="kb-item reveal"><summary><span class="no">07</span><span class="ttl">图像与排版</span><span class="sub">海报、四色、Pillow 手绘</span><span class="ct">1072 字</span></summary><div class="kb-body"><h4>现状：图像模型一个都用不了（2026-10-31 实测）</h4>
+<div class="kb-tw"><table><thead><tr><th>provider</th><th>报错</th></tr></thead><tbody><tr><td>google / openai / dashscope</td><td><code>requires the ... API key</code></td></tr><tr><td>chatgpt-sub / grok-sub / google-sub</td><td><code>未登录：请到 设置 &gt; 插件 &gt; 图像生成 的订阅区完成登录</code></td></tr><tr><td>comfyui</td><td><code>requires an imported workflow</code></td></tr></tbody></table></div>
+<p>遇到"做张海报/插画"，先确认这三类里有没有可用的；都没有就<strong>直说</strong>并用下面的代码方案顶上。</p>
+<h4>代码画插画的可用手法</h4>
+<ol><li><strong>超采样</strong>：3–4 倍画布再 LANCZOS 缩回，边缘才不毛。</li><li><strong>手绘感</strong>：每个形状的路径点加 1–2px 随机抖动；同一条轮廓叠 2 遍（第二遍低透明度、轻微偏移）；圆/椭圆半径加 <code>sin(3θ)</code> 起伏。</li><li><strong>纸纹</strong>：以 <strong>255 为基准</strong>做 ±6 的噪声再 multiply；千万别用 128 基准（会把整幅压成灰）。</li><li><strong>干笔缺口</strong>：alpha 乘 <code>(0.55 + 0.75*噪声)</code> 再阈值化，边缘就有毛刺。</li><li><strong>四色收敛</strong>：先 <code>quantize(colors=4, MEDIANCUT, dither=NONE)</code> 再中值滤波，得到色板；但直接拿来做"纸剪"会糊成一团（实测失败），只适合取色。</li></ol>
+<h4>海报版式（3:4 竖版 · 编辑风）</h4>
+<ul><li>画布 1500×2000；上下各 1000px，中间一条 1–2px 米灰细线。</li><li>上半 = 原图（cover 裁切，别拉伸），只做轻分级：饱和 ×0.93、红 ×1.014、蓝 ×0.986、整体 ×1.02。</li><li>下半 = 暖白纸面（#FAF6ED），插画边长 ≈ 画布宽 ×0.30（占下半 11–12%，符合"10–20%"）。</li><li>文字：极小号（21px 标题 / 16px 副题），贴左下 96px 内边距，颜色 <code>#48403 6</code> 与 <code>#80766 6</code> 这一类低对比墨色；宁可不写，也别写长句。</li><li>交付：同时给"带字"和"无字"两版，让人挑。</li></ul>
+<h4>坑</h4>
+<ul><li>海报下半那种"纸剪分色"做法（原图 → 四色 → 位移抖动）会丢掉可辨识的形状，只剩色块；插画要么手画路径，要么等真模型。</li><li>原图若是游戏/软件截图，右上角常有 FPS/GPU 之类 HUD，属于界面不属于画面，裁掉并告知。</li></ul></div></details>
+</div>
+</div>
+<!-- KB:END -->
+    </div>
+  </section>
+
+  <!-- ── 04 关于 ────────────────────────────────────────── -->
+  <section class="sec" id="about">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="ch">CHAPTER 06 / 06 · 关于</span>
+        <span class="num" aria-hidden="true">06</span>
+        <h2>关于</h2>
+        <p class="hint">给自己用的东西，不必解释给谁听。</p>
+      </div>
+
+      <div class="about">
+        <div class="reveal">
+          <p>
+            这是一个给自己用的数字抽屉，用来装灵感、存课件、记片段。
+            不对外展示，只服务一个人。
+          </p>
+          <p>
+            整个站点是一个 HTML 文件：样式、画山的那段着色器、数据读写，
+            全都写在同一份文档里。想加新功能、改配色、换文案，直接改这个文件就行，
+            不用构建、不用装环境。
+          </p>
+          <p>
+            背景那层山是实时算出来的，不是图片——所以它随窗口变化、随指针轻轻偏移，
+            永远不会有「图片放大变糊」这回事。
+          </p>
+          <p class="quote">留白不是空，是留给下次的自己。</p>
+        </div>
+
+        <dl class="facts reveal">
+          <div><dt>Build</dt><dd>2026 · 秋</dd></div>
+          <div><dt>Theme</dt><dd>漓江山水</dd></div>
+          <div><dt>Storage</dt><dd>浏览器本地</dd></div>
+          <div><dt>Render</dt><dd>WebGL 实时光栅</dd></div>
+          <div><dt>Files</dt><dd>1 个 HTML</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <b>执 · Y-STUDIO</b>
+    <span>本地运行 · 数据不出这台机器</span>
+    <a class="to-top" href="#top">回到顶部 ↑</a>
+  </div>
+</footer>
+
+<!-- ── 生活日志：编辑 ─────────────────────────────────────── -->
+<div class="mask" id="lifeMask" role="dialog" aria-modal="true" aria-labelledby="lifeTitle">
+  <div class="sheet">
+    <h3 id="lifeTitle">记一条</h3>
+    <p class="sub">照片会压到 1600px、视频原样存。都存在这台机器里，不上传。</p>
+
+    <div class="field">
+      <label for="lDate">日期</label>
+      <input type="date" id="lDate">
+    </div>
+
+    <div class="field">
+      <label for="lTitle">标题</label>
+      <input type="text" id="lTitleIn" placeholder="那天的一句话" autocomplete="off">
+    </div>
+
+    <div class="field">
+      <label for="lText">正文</label>
+      <textarea id="lText" class="post-body" style="min-height:130px" placeholder="想记下的都写在这儿。"></textarea>
+    </div>
+
+    <div class="field">
+      <label>照片 / 视频</label>
+      <div class="media-pick">
+        <button class="btn ghost sm" id="pickPhoto" type="button">加照片</button>
+        <button class="btn ghost sm" id="pickVideo" type="button">加视频</button>
+        <input type="file" id="filePhoto" accept="image/*" multiple hidden>
+        <input type="file" id="fileVideo" accept="video/*" multiple hidden>
+      </div>
+      <div class="media-grid" id="mediaGrid"></div>
+      <div class="cover-pick" id="coverPick" hidden>
+        <span>换视频封面：</span>
+        <button class="btn ghost sm" id="cvFirst" type="button">用首帧</button>
+        <button class="btn ghost sm" id="cvBuiltin" type="button">秋日富士</button>
+        <button class="btn ghost sm" id="cvUpload" type="button">上传一张</button>
+        <button class="btn ghost sm" id="cvCancel" type="button">算了</button>
+        <input type="file" id="coverFile" accept="image/*" hidden>
+      </div>
+    </div>
+
+    <div class="sheet-foot">
+      <button class="btn ghost" id="lifeCancel">取消</button>
+      <button class="btn primary" id="lifeSave">存下来</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── 生活日志：灯箱 ─────────────────────────────────────── -->
+<div class="mask lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lbClose">合上</button>
+  <button class="lb-nav lb-prev" id="lbPrev">←</button>
+  <div class="lb-stage" id="lbStage"></div>
+  <button class="lb-nav lb-next" id="lbNext">→</button>
+  <div class="lb-meta" id="lbMeta"></div>
+</div>
+
+<!-- ── 阅读器 ─────────────────────────────────────────────── -->
+<div class="mask reader" id="readerMask" role="dialog" aria-modal="true" aria-labelledby="rTitle">
+  <div class="reader-wrap">
+  <div class="r-prog" aria-hidden="true"><i id="rProgBar"></i></div>
+  <article class="reader-sheet">
+    <span class="r-date" id="rDate"></span>
+    <h3 id="rTitle"></h3>
+    <span class="r-meta" id="rMeta"></span>
+    <div class="r-body" id="rBody"></div>
+    <div class="reader-nav">
+      <button class="r-btn" id="rPrev" type="button">← 上一篇</button>
+      <span class="pos" id="rPos"></span>
+      <button class="r-btn" id="rNext" type="button">下一篇 →</button>
+    </div>
+    <button class="r-top" id="rTop" type="button" aria-label="回到开头">回到开头 ↑</button>
+    <div class="sheet-foot">
+      <button class="btn ghost" id="rClose">合上</button>
+      <button class="btn ghost" id="rEdit">改</button>
+      <button class="btn ghost" id="rDel">删</button>
+    </div>
+  </article>
+  </div>
+</div>
+
+<!-- ── 写文章弹层 ─────────────────────────────────────────── -->
+<div class="mask" id="postMask" role="dialog" aria-modal="true" aria-labelledby="postTitle">
+  <div class="sheet">
+    <h3 id="postTitle">写一篇</h3>
+    <p class="sub">标题一行；正文用空行分段，以「## 」开头的行会当成小标题。</p>
+
+    <div class="field">
+      <label for="pTitle">标题</label>
+      <input type="text" id="pTitle" placeholder="今天想说的是什么" autocomplete="off">
+    </div>
+
+    <div class="field">
+      <label for="pDate">日期</label>
+      <input type="date" id="pDate">
+    </div>
+
+    <div class="field">
+      <label for="pTag">标签</label>
+      <input type="text" id="pTag" placeholder="随笔 / 读后 / 技术（可留空）" autocomplete="off">
+    </div>
+
+    <div class="field">
+      <label>封面（可留空）</label>
+      <div class="cover-row">
+        <button class="btn ghost sm" id="pCover" type="button">选一张图</button>
+        <span class="cover-hint" id="pCoverHint">不选就在列表里显示序号</span>
+        <button class="btn ghost sm" id="pCoverClear" type="button" hidden>去掉</button>
+      </div>
+      <div class="cover-prev" id="pCoverPrev" hidden></div>
+      <input type="file" id="pCoverFile" accept="image/*" hidden>
+    </div>
+
+    <div class="field">
+      <label class="pick">
+        <input type="checkbox" id="pFeat">
+        <span>置顶到文章区顶部（同一时间只有一篇）</span>
+      </label>
+    </div>
+
+    <div class="field">
+      <label for="pBody">正文</label>
+      <textarea id="pBody" class="post-body" placeholder="先写第一句，剩下的会自己长出来。"></textarea>
+    </div>
+
+    <div class="sheet-foot">
+      <button class="btn ghost" id="pCancel">取消</button>
+      <button class="btn ghost" id="pDraft">存草稿</button>
+      <button class="btn primary" id="pSave">存下来</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── 资料库弹层 ─────────────────────────────────────────── -->
+<div class="mask" id="modalMask" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="sheet">
+    <h3 id="modalTitle">添加一条</h3>
+    <p class="sub">标题写清楚就够了，其他随缘。</p>
+
+    <div class="field">
+      <label for="fTitle">标题</label>
+      <input type="text" id="fTitle" placeholder="一句话写清楚是什么" autocomplete="off">
+    </div>
+
+    <div class="field">
+      <label for="fUrl">链接</label>
+      <input type="text" id="fUrl" placeholder="https://（可留空）" autocomplete="off" inputmode="url">
+    </div>
+
+    <div class="field">
+      <label for="fTag">标签</label>
+      <input type="text" id="fTag" placeholder="灵感 / 参考 / 待读…（可留空）" autocomplete="off">
+    </div>
+
+    <div class="field">
+      <label for="fNote">备注</label>
+      <textarea id="fNote" placeholder="为什么记它、以后可能用在哪（可留空）"></textarea>
+    </div>
+
+    <div class="sheet-foot">
+      <button class="btn ghost" id="cancelBtn">取消</button>
+      <button class="btn primary" id="saveBtn">收进资料库</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── 课程弹层 ───────────────────────────────────────────── -->
+<div class="mask" id="courseModalMask" role="dialog" aria-modal="true" aria-labelledby="courseModalTitle">
+  <div class="sheet">
+    <h3 id="courseModalTitle">添加课程资料</h3>
+    <p class="sub">选学科，会挂到对应的那座山上。</p>
+
+    <div class="field">
+      <label for="cSubject">学科</label>
+      <select id="cSubject">
+        <option value="math">高等数学</option>
+        <option value="chem">无机化学</option>
+        <option value="eng">英语</option>
+        <option value="env">环境导论</option>
+        <option value="pol">政治</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="cTitle">标题</label>
+      <input type="text" id="cTitle" placeholder="例：第一章 极限与连续 · 课件" autocomplete="off">
+    </div>
+
+    <div class="field half">
+      <div class="field" style="margin:0">
+        <label for="cType">类型</label>
+        <select id="cType">
+          <option value="ppt">PPT</option>
+          <option value="note">笔记</option>
+          <option value="exam">试题</option>
+          <option value="video">视频</option>
+          <option value="link">链接</option>
+        </select>
+      </div>
+      <div class="field" style="margin:0">
+        <label for="cUrl">链接</label>
+        <input type="text" id="cUrl" placeholder="可留空" autocomplete="off" inputmode="url">
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="cNote">备注</label>
+      <textarea id="cNote" placeholder="考点、来源、页数…（可留空）"></textarea>
+    </div>
+
+    <div class="sheet-foot">
+      <button class="btn ghost" id="courseCancelBtn">取消</button>
+      <button class="btn primary" id="courseSaveBtn">存到这座山</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<div class="cur" id="curDot" aria-hidden="true"></div>
+<div class="cur-ring" id="curRing" aria-hidden="true">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+</div>
+
+
+<script src="js/app.js"></script>
+<script src="js/vendor/three.min.js"></script>
+<script src="js/spirit-scene.js"></script>
+</body>
+</html>
